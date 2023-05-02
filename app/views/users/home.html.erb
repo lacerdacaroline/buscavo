@@ -1,6 +1,30 @@
-<div class="text-center m-5">
-  <h2>Welcome to Buscavo, Click in the button below to call a new ride</h2>
+<div class="text-center m-5" data-controller="location" >
+
+  <div class="m-3">
+    <h1 class="text-center">Welcome to <strong>BuscaVó</strong></h1>
+    <h2 class="text-center m-3">🚕 Click in the <strong>button below</strong> to call a new ride 🚕 </h2>
+  </div>
+
   <div class="d-grid gap-2 col-6 mx-auto m-5">
-    <%= link_to "Call a New Ride", new_ride_path(refeer: @admin.id), class: "btn btn-primary  btn-lg rounded px-4 py-5" %>
+    <div class="col-md-12" data-controller="location" data-location-value="form" data-location-refeer-id-value="<%= @admin.id %>">
+      <h4 data-location-target="text">Buscando sua localização atual...</h4>
+        <%= simple_form_for(@ride) do |f| %>
+          <%= f.error_notification %>
+          <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+          <div class="form-inputs">
+            <%= f.input :latitude, placeholder: "Obtendo latitude...", input_html: {data: {location_target: "lat"}} %>
+            <%= f.input :longitude, placeholder: "Obtendo longitude...", input_html: {data: {location_target: "lng"}}  %>
+            <%= f.input :user_id, input_html: { value: @user.id } %>
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, " -------->   CALL NEW RIDE   <--------", class: "btn btn-primary btn-lg px-4 mt-4", data: { location_target: "button" } %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
+
+<%# Clica no potão e vai para o new_ride_path %>

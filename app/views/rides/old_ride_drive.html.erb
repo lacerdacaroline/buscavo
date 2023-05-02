@@ -1,0 +1,78 @@
+<div class="container mt-2">
+<h1> See your user last rides</h1>
+
+<% @rides.each do |ride| %>
+<div class="container ride-container">
+  <div class='row'>
+    <div class='col-4 d-flex align-items-end'>
+        <div class='card-ride'>
+        <div class='card-ride-content'>
+            <h1> Ride Info </h1>
+                <h5>
+                <i class="fa-solid fa-mobile-screen-button"></i> <strong>Passager phone number:</strong>
+                  <%= ride.user_phone_number %>
+                </h5>
+
+                <h5>
+                  <i class="fa-solid fa-location-arrow"></i> <strong>Start address:</strong>
+                  <%= ride.start_address.truncate(25) %>
+                </h5>
+
+                <h5>
+                <i class="fa-solid fa-location-dot"></i> <strong>Final address:</strong>
+                  <%= ride.end_address %>
+                </h5>
+
+                <h5>
+                  <i class="fa-solid fa-dollar-sign"></i> <strong>Price:</strong>
+                  <%= ride.price %>
+                </h5>
+
+              <%= link_to 'click to review', ride_path(ride), class: 'btn btn-outline-primary' %>
+            </div>
+            <%= image_tag 'car-photo.svg' %>
+        </div>
+    </div>
+<% end %>
+</div>
+</div>
+</div>
+<div class="container mt-2">
+<h1> See your user last rides</h1>
+
+<% @rides.each do |ride| %>
+<div class="container ride-container">
+  <div class='row'>
+    <div class='col-4 d-flex align-items-end'>
+        <div class='card-ride'>
+        <div class='card-ride-content'>
+            <h1> Ride Info </h1>
+                <h5>
+                <i class="fa-solid fa-mobile-screen-button"></i> <strong>Passager phone number:</strong>
+                  <%= ride.user_phone_number %>
+                </h5>
+
+                <h5>
+                  <i class="fa-solid fa-location-arrow"></i> <strong>Start address:</strong>
+                  <%= ride.start_address.truncate(25) %>
+                </h5>
+
+                <h5>
+                <i class="fa-solid fa-location-dot"></i> <strong>Final address:</strong>
+                  <%= ride.end_address %>
+                </h5>
+
+                <h5>
+                  <i class="fa-solid fa-dollar-sign"></i> <strong>Price:</strong>
+                  <%= ride.price %>
+                </h5>
+
+              <%= link_to 'click to review', ride_path(ride), class: 'btn btn-outline-primary' %>
+            </div>
+            <%= image_tag 'car-photo.svg' %>
+        </div>
+    </div>
+<% end %>
+</div>
+</div>
+</div>

@@ -2,15 +2,15 @@
   <% if current_admin.photo.attached? %>
   <%= cl_image_tag current_admin.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
   <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-    <%= link_to "Profile", admins_path, class: "dropdown-item" %>
-    <%= link_to "Rides", "#", class: "dropdown-item" %>
+    <%# <%= link_to "Profile", admins_path, class: "dropdown-item" %>
+    <%# <%= link_to "Rides", "#", class: "dropdown-item" %>
     <%= link_to "Logout", destroy_admin_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
   </div>
   <% else %>
   <%= image_tag 'default.png', class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
   <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-    <%= link_to "Profile", admins_path, class: "dropdown-item" %>
-    <%= link_to "Rides", "#", class: "dropdown-item" %>
+    <%# <%= link_to "Profile", admins_path, class: "dropdown-item" %>
+    <%# <%= link_to "Rides", "#", class: "dropdown-item" %>
     <%= link_to "Logout", destroy_admin_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
   </div>
   <% end %>

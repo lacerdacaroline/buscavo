@@ -2,32 +2,28 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="users"
 export default class extends Controller {
-  static targets = ["waitingList", "responseList"]
+  static targets = ["waitingList"]
   static values = { phone: String, id: Number }
 
   connect() {
-    setTimeout(() => {
-      this.insertInList()
-    }, 2000);
+    this.insertInList()
   }
 
   insertInList() {
-
-    console.log('fetch trip')
 
     let formData = new FormData()
     formData.append('phone_number', this.phoneValue)
     formData.append('ride_id', this.idValue)
 
-    fetch("/notifies", {
-      method: "POST",
-      headers: {"Accept": "application/json"},
-      body: formData
-    })
-    .then(response => response.json())
-    .then((data) => {
-      this.responseListTarget.insertAdjacentHTML('beforeend', `<p>${data.message}</p>`)
-    })
+    // Cria uma notify (notify controller)
+
+    setTimeout(() => {
+      fetch("/notifies", {
+        method: "POST",
+        headers: {"Accept": "application/json"},
+        body: formData
+      })
+    }, 10000);
 
     setTimeout(() => {
       this.waitingListTarget.insertAdjacentHTML('beforeend',

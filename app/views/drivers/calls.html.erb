@@ -1,10 +1,15 @@
-<div class="container rides">
+<div class="container">
+
+  <div class="m-3">
+    <h1 class="text-center">Hi, thanks for using <strong>BuscaVó</strong></h1>
+    <h2 class="text-center m-3">🚕 Let's see if you have some <strong>ride</strong> 🚕 </h2>
+  </div>
 
   <div class="driver ridesList"
     data-controller="drivers"
     data-drivers-id-value="<%= @notify.ride_id %>">
     <div class="rides py-4" data-drivers-target="box">
-      <% @ride.notifies.each do |notify| %>
+      <% Notify.all.each do |notify| %>
         <%= render 'rides/notify', notify: notify %>
       <% end %>
     </div>

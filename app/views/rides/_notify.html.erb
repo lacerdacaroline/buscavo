@@ -1,25 +1,21 @@
-<div class='card my-3' style='width: 18rem;' id='ride-<%= notify.id %>'>
-  <div class='card-body'>
-    <h5 class='card-title'><strong><%= notify.user.phone_number %></strong></h5>
-    <h6 class='card-subtitle mb-2 text-muted'><%= notify.created_at.strftime('%a %b %e at %l:%M %p') %></h6>
-    <p class='card-text'><%= notify.content %></p>
-    <a href='#' class='card-link'>Card link</a>
-    <a href='#' class='card-link'>Another link</a>
+<div class="card text-center m-3">
+
+
+  <div class="card-header">
+    <h6 class='mt-2'>New Ride from <strong><%= notify.user.first_name %> <%= notify.user.last_name %></strong></h6>
   </div>
+
+  <div class="card-body">
+    <h5 class="card-title">Phone-number: <strong><%= notify.user.phone_number %></strong></h5>
+    <p class="card-text"><%= notify.ride.start_address %></p>
+
+    <a href='/run/<%= notify.ride.id %>' class='card-link btn btn-primary'>Aceppt Ride</a>
+    <%= link_to "Reject Ride", notify_path(@notify), class: "card-link btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+
+  </div>
+
+  <div class="card-footer text-muted">
+    <%= notify.created_at.strftime('%a %b %e at %l:%M %p') %>
+  </div>
+
 </div>
-
-
-<%# "<div class='card m-5' style='width: 30rem;' id='ride'>
-  <div class='card-body'><h5 class='card-title'>Phone-number: <strong>+55 11 9-8765-4321</strong></h5>
-    <h6 class='card-subtitle mb-2 text-muted'>Friday, 2022 Dec 02</h6>
-    <p class='card-text'>Name: Dona Alice</p>
-    <a href='#' class='card-link btn btn-primary'>Accept Ride</a>
-    <a href='#' class='card-link btn btn-primary'>Cancel</a>
-  </div>
-</div>"
-
-<div class='row'>
-  <div class='col-4 d-flex justify-content-center'>
-
-  </div>
-</div> %>

@@ -9,14 +9,12 @@ export default class extends Controller {
   static values = { id: Number }
 
   connect() {
-
     this.channel = createConsumer().subscriptions.create(
       {
         channel: 'RidesChannel', id: this.idValue
       },
       {
         received (data) {
-          console.log("received")
           if (data) {
             fetch("/services", {
               method: "GET",
@@ -25,22 +23,24 @@ export default class extends Controller {
             .then(response => response.json())
             .then((data) => {
               console.log(data)
-              document.querySelector('.rides').insertAdjacentHTML('beforeend', `<div id="${data.ride.id}"
-              <h5 class="card-title"><strong>${data.ride.phone_number}</strong></h5>
-              <h6 class="card-subtitle mb-2 text-muted">${data.ride.created_at}</h6>
-              <p class="card-text">${data.ride.content}</p>
-              <a href="/rides/${data.ride.id}" class="card-link">Accept Trip</a>
-              <a href="" class="card-link">Reject Trip</a>
-              </div>`) // .strftime("%a %b %e at %l:%M %p")
-              document.querySelector('.rides').scrollTo(0, document.querySelector('.rides').scrollHeight)
-              console.log(document.querySelector('.rides').scrollHeight)
-
+              document.querySelector('.rides').insertAdjacentHTML('beforeend',
+              `<div class="card text-center m-3">
+              <div class="card-header">
+              <h6 class='mt-2'>New Ride from <strong>${data.ride.user_full_name}</strong></h6>
+              </div>
+              <div class="card-body">
+              <h5 class="card-title">Phone-number: <strong>${data.ride.phone_number}</strong></h5>
+              <p class="card-text">${data.ride.address}</p>
+              <a href='/rides/${data.ride.id}' class='card-link btn btn-primary'>Aceppt Ride</a>
+              <a href='#' class='card-link btn btn-danger'>Reject Ride</a>
+              </div>
+              <div class="card-footer text-muted">${data.ride.created_at}</div>
+              </div>`)
+              //
             })
           }
         }
       }
     )
-      console.log(this.channel)
-
   }
 }

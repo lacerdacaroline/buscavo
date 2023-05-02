@@ -1,0 +1,15 @@
+<div class="container mt-5">
+<h3>Your ride is finished. Make a review below</h3>
+  <%= simple_form_for ([@ride, @review]) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <%= f.input :stars, placeholder: "Rating 1-5" %>
+      <%= f.input :content %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Create Review", class: "btn btn-success" %>
+    </div>
+  <% end %>
+</div>

@@ -23,6 +23,7 @@
             <p class="text-muted mb-1">Administrator</p>
             <div class="d-flex justify-content-center mt-2 mb-2">
               <%= link_to 'Edit profile', edit_admin_registration_path, class: 'btn btn-outline-primary' %>
+              <%= link_to 'My Rides', rides_path, class: 'btn btn-outline-primary' %>
             </div>
           </div>
         </div>
@@ -69,20 +70,22 @@
                   <h4 class="card-title">Payments</h4>
                   <p class="card-text">Name: <%= @admin.credit_card_name  %></p>
                   <p class="card-text">Final number: <%= @admin.credit_card_number.last(4)  %></p>
-                  <%= link_to 'Edit your payment', payments_path, class: 'btn btn-sm btn-primary' %>
+                  <div class="d-flex justify-content-center mt-2 mb-2">
+                    <%= link_to 'Edit your payment', payments_path, class: 'btn btn-outline-primary' %>
+                  </div>
                 </div>
               </div>
             </div>
             <% end %>
           </div>
           <div class="col-md-6">
-          <% if @admin.user_first_name.nil? || @admin.user_first_name.empty? %>
+          <% if @admin.user.nil? %>
             <div class="card mb-4 mb-md-0">
               <div class="card text-center" style="width: 100%;">
                 <div class="card-body">
                   <h4 class="card-title">User</h4>
                   <p class="card-text"></p>
-                 <%= link_to '+ Add New User', user_path, class: 'btn btn-sm btn-primary' %>
+                 <%= link_to '+ Add New User', new_users_path, class: 'btn btn-sm btn-primary' %>
                 </div>
               </div>
             </div>
@@ -91,13 +94,15 @@
               <div class="card text-center" style="width: 100%;">
                 <div class="card-body">
                   <h4 class="card-title">User</h4>
-                  <p class="card-text">Name: <%= "#{@admin.user_first_name} #{@admin.user_last_name}" %></p>
-                  <p class="card-text">Phone: <%= @admin.user_phone_number %></p>
+                  <p class="card-text">Name: <%= "#{@admin.user.first_name} #{@admin.user.last_name}" %></p>
+                  <p class="card-text">Phone: <%= @admin.user.phone_number %></p>
                   <div data-controller="clipboard" data-clipboard-feedback-text-value="Copied!">
                     <input data-clipboard-target="input" type="text" value="http://localhost:3000/home?refeer=<%=@admin.id%>" readonly>
                     <button class="btn btn-sm btn-outline-primary" data-action="click->clipboard#copy"><i class="fa-regular fa-copy"></i></button>
                   </div>
-                 <%= link_to 'Edit User', user_path, class: 'btn btn-sm btn-primary' %>
+                  <div class="d-flex justify-content-center mt-2 mb-2">
+                    <%= link_to 'Edit user', edit_user_path(@admin.user), class: 'btn btn-outline-primary' %>
+                  </div>
                 </div>
               </div>
             </div>

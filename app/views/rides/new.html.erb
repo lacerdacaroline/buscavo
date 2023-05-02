@@ -5,6 +5,7 @@
     <h2 class="text-center m-3">🚕 Now we are preparing your ride 🚕 </h2>
   </div>
 
+  <%# Direciona para o controller stimulus USER passando PHONE E ID e chama o target WAITINGLIST %>
   <div data-controller="users" data-users-phone-value="<%= @user.phone_number %>" data-users-id-value="<%= @ride.id%>" data-users-target="waitingList"></div>
 
   <div>

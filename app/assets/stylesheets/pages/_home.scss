@@ -1,6 +1,9 @@
 body {
   background-color: #EFF5EE;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: $navy;
 }
 
 .content {

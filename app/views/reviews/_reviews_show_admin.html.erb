@@ -1,0 +1,54 @@
+<body>
+  <section id="testimonials">
+    <!--heading--->
+    <div class="testimonial-heading">
+      <h5> Reviews </h5>
+    </div>
+
+    <!-------->
+    <%@ride.reviews.each do |review|%>
+    <div class="testimonial-box-container">
+      <!--BOX-1-------------->
+      <div class="testimonial-box">
+        <!--top------------------------->
+        <div class="box-top">
+          <!--profile----->
+          <div class="profile">
+            <!--img---->
+            <div class="profile-img">
+              <% if review.admin.photo.attached? %>
+                <%= cl_image_tag review.admin.photo.key %>
+              <% elsif review.driver.photo.attached? %>
+                <%= cl_image_tag review.driver.photo.key %>
+              <% else %>
+                <%= image_tag 'default.png' %>
+              <% end %>
+            </div>
+            <!--name-and-username-->
+            <div class="name-user">
+            <% if review.author == 'admin' %>
+              <p><strong>Review by admin: </strong><%=review.admin.first_name%> <%=review.admin.last_name%></p>
+              <p><strong>User:</strong><%=review.admin.user_first_name%> <%=review.admin.user_last_name%></p>
+              <% else %>
+                   <p><strong>Review by driver: </strong><%=review.driver.first_name%> <%=review.driver.last_name%></p>
+              <% end %>
+            </div>
+          </div>
+          <!--reviews------>
+          <div class="reviews"> <% review.stars.times do %>
+            <i class="fas fa-star"></i>
+         <%end%>
+          </div>
+        </div>
+        <!--Comments---------------------------------------->
+        <div class="client-comment">
+        <% if review.author == 'admin' %>
+          <strong>Coments about the driver: </strong><%= review.content%>
+          <% else %>
+          <strong>Coments about the user:  </strong><%= review.content%>
+          <% end %>
+        </div>
+      </div>
+    <%end%>
+  </section>
+</body>

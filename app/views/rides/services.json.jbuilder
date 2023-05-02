@@ -1,1 +1,1 @@
-json.ride id: @ride.id, phone_number: @ride.user_phone_number, content: "Is requesting a ride!", created_at: @ride.created_at
+json.ride id: @ride.id, phone_number: @ride.user_phone_number, content: "Is requesting a ride!", created_at: @ride.created_at.strftime("%a %b %e at %l:%M %p"), user_full_name: "#{@ride.user.first_name} #{@ride.user.last_name}", address: @ride.start_address

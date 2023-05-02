@@ -1,57 +1,61 @@
-<div class="container py-5">
-  <div class="row">
-    <div class="col">
-      <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
-        <ol class="breadcrumb mb-0">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">User Profile</li>
-        </ol>
-      </nav>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-4">
-      <div class="card mb-4">
-        <div class="card-body text-center">
-        <% if @driver.photo.attached? %>
-          <%= cl_image_tag @driver.photo.key, class: "rounded-circle img-fluid",  style: "width: 150px;", crop: :fill %>
-        <% else %>
-          <%= image_tag 'default.png', height: 200, width: 200, radius: :max,  crop: :fill %>
-        <% end %>
-          <h5 class="my-3"><%= "#{@driver.first_name} #{@driver.last_name}" %></h5>
-          <p class="text-muted mb-1">Driver</p>
-          <div class="d-flex justify-content-center mt-2 mb-2">
-            <%= link_to 'Edit profile', edit_driver_registration_path, class: 'btn btn-outline-primary' %>
-          </div>
+<div class="driver">
+  <div class="driver-cont">
+    <div class="container " id="cont-size">
+      <div class="row">
+        <div class="col">
+          <nav aria-label="breadcrumb" class=" rounded-3 p-3 mb-4" id="navb">
+            <ol class="breadcrumb mb-0" >
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+            </ol>
+          </nav>
         </div>
       </div>
-    </div>
-    <div class="col-lg-8">
-      <div class="card mb-4">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-sm-3">
-              <p class="mb-0">Email:</p>
-            </div>
-            <div class="col-sm-9">
-              <p class="text-muted mb-0"><%= @driver.email %></p>
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-sm-3">
-              <p class="mb-0">Phone:</p>
-            </div>
-            <div class="col-sm-9">
-              <p class="text-muted mb-0"><%= @driver.phone_number %></p>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-body text-center">
+            <% if @driver.photo.attached? %>
+              <%= cl_image_tag @driver.photo.key, class: "rounded-circle img-fluid",  style: "width: 150px;", crop: :fill %>
+            <% else %>
+              <%= image_tag 'default.png', height: 200, width: 200, radius: :max,  crop: :fill %>
+            <% end %>
+              <h5 class="my-3"><%= "#{@driver.first_name} #{@driver.last_name}" %></h5>
+              <p class="text-muted mb-1">Driver</p>
+              <div class="d-flex justify-content-center mt-2 mb-2">
+                <%= link_to 'Edit profile', edit_driver_registration_path, class: 'btn btn-outline-primary' %>
+              </div>
             </div>
           </div>
         </div>
+        <div class="col-lg-8" id="driverb">
+          <div class="card mb-4">
+            <div class="card-body" id="driverc">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Email:</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0"><%= @driver.email %></p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Phone:</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0"><%= @driver.phone_number %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-grid gap-2 col-6 mx-auto m-5">
+        <%= link_to 'New Ride', calls_path, class: 'btn btn-outline-primary' %>
+        <%= link_to 'Last Ride', driverides_path, class: 'btn btn-outline-primary' %>
       </div>
     </div>
-  </div>
-  <div class="d-grid gap-2 col-6 mx-auto m-5">
-    <%= link_to 'Rides', driver_path(current_driver), class: 'btn btn-outline-primary' %>
   </div>
 </div>

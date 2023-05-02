@@ -1,0 +1,72 @@
+<div class="container ride-container">
+  <div class='row'>
+    <div class='col-6 d-flex align-items-end'>
+        <div class='card-ride'>
+        <div class='card-ride-content'>
+            <h1> Ride Info </h1>
+
+            <div id="<%= dom_id @ride %>"> </div>
+                <h5>
+                <i class="fa-solid fa-mobile-screen-button"></i> <strong>Passager phone number:</strong>
+                  <%= @ride.user_phone_number %>
+                </h5>
+
+                <h5>
+                  <i class="fa-solid fa-location-arrow"></i> <strong>Start address:</strong>
+                  <%= @ride.start_address.truncate(65) %>
+                </h5>
+
+                <h5>
+                <i class="fa-solid fa-location-dot"></i> <strong>Final address:</strong>
+                  <%= @ride.end_address %>
+                </h5>
+
+                <h5>
+                  <i class="fa-solid fa-dollar-sign"></i> <strong>Price:</strong>
+                  <%= @ride.price %>
+                </h5>
+
+              <%if current_driver %>
+                <%= link_to 'back home', drivers_path, class: 'btn btn-outline-primary' %>
+              <% else %>
+                <%= link_to 'back home', admins_path(current_admin.id), class: 'btn btn-outline-primary' %>
+              <% end %>
+            </div>
+            <%= image_tag 'car-photo.svg' %>
+        </div>
+    </div>
+
+
+    <div class='col-6 d-flex flex-column align-items-center'>
+
+      <% if @ride.reviews.present? %>
+      <%= render 'reviews/reviews_show_admin' %>
+      <% end %>
+
+      <% if current_driver %>
+        <% if @ride.reviews.present? %>
+          <% if @ride.reviews.last.author == 'driver' %>
+          <h5>This review has already been done </h5>
+          <% else %>
+          <h5>This review has already been done</h5>
+          <% end %>
+        <% else %>
+          <%= render "reviews/reviews_form" %>
+        <% end %>
+
+      <% elsif current_admin && @ride.user.admin_id == current_admin.id %>
+        <% if @ride.reviews.present? %>
+          <% if @ride.reviews.last.author == 'admin' %>
+          <h5>This review has already been done</h5>
+          <% else %>
+            <h5>This review has already been done</h5>
+        <% end %>
+        <% else %>
+        <%= render "reviews/reviews_admin" %>
+      <% end %>
+      <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
