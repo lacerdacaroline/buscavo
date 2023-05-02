@@ -1,4 +1,5 @@
 class NotifiesController < ApplicationController
+  include CableReady::Broadcaster
   protect_from_forgery with: :null_session
 
   def create
@@ -8,15 +9,12 @@ class NotifiesController < ApplicationController
     @notify.content = "Is requesting a ride!"
     @notify.ride_id = @ride.id
     @notify.user = @user
-    raise
     if @notify.save
-      RidesChannel.broadcast_to(@ride,
-        render_to_string(partial: "notify", locals: { notify: @notify })
-      ) #<--- render
+      cable_ready[RidesChannel].broadcast_to @ride
       head :ok
       respond_to do |format|
-        format.html {  } #<--- redirect
-        format.json {  }
+        format.html { redirect_to ride_url(@ride), notice: "ride was successfully created." }
+        format.json { }
       end
     else
       respond_to do |format|

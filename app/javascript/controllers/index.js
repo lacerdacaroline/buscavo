@@ -4,11 +4,14 @@
 
 import { application } from "./application"
 
+import ClipboardController from "./clipboard_controller"
+application.register("clipboard", ClipboardController)
+
+import DriversController from "./drivers_controller"
+application.register("drivers", DriversController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
-
-import RidesController from "./rides_controller"
-application.register("rides", RidesController)
 
 import UsersController from "./users_controller"
 application.register("users", UsersController)

@@ -1,11 +1,16 @@
-<div data-controller="rides" data-rides-phone-value="<%= @user.phone_number %>" data-rides-id-value="<%= @ride.id %>">
+<div class="container">
 
-  <h1>Preparing your trip...</h1>
-  <br>
+  <div class="m-3">
+    <h1 class="text-center">Hi, thanks for using <strong>BuscaVó</strong></h1>
+    <h2 class="text-center m-3">🚕 Now we are preparing your ride 🚕 </h2>
+  </div>
 
-  <div data-controller="users" data-users-target="waitingList"></div>
+  <div data-controller="users" data-users-phone-value="<%= @user.phone_number %>" data-users-id-value="<%= @ride.id%>" data-users-target="waitingList"></div>
 
   <div>
-    <%= link_to "Cancel trip", home_path(refeer: @admin.id) %>
+    <div class="d-grid gap-2 m-3">
+      <%= link_to "Cancel", home_path(refeer: @admin.id), class: "btn btn-danger btn-lg" %>
+    </div>
   </div>
+
 </div>

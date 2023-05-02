@@ -1,44 +1,19 @@
 class RidesController < ApplicationController
-  protect_from_forgery unless: -> { request.format.json? }
+  protect_from_forgery with: :null_session
 
   def new
     @admin = Admin.find(params[:refeer])
     @user = @admin.user.first
-    @ride = Ride.create(user_phone_number: @user.phone_number, user: @user)
+    @ride = Ride.find_or_create_by(user_phone_number: @user.phone_number, user: @user, driver: Driver.first)
   end
 
-  def create
-    @ride = Ride.find(params[:ride_id])
-    @user = User.find_by(phone_number: params[:phone_number])
-    @notify = Notify.new
-    @notify.content = "Is requesting a ride!"
-    @notify.ride_id = @ride.id
-    @notify.user = @user
-    if @notify.save
-      RidesChannel.broadcast_to(@ride, @notify)
-      head :ok
-      # redirect_to ride_path(@ride)
+  def services
+    @ride = Ride.last
 
-      # respond_to do |format|
-      #   format.html {  } #<--- redirect
-      #   format.json {  }
-      # end
-    else
-      respond_to do |format|
-        format.html { render :new }
-        format.json { render json: @notify.errors, status: :unprocessable_entity }
-      end
+    respond_to do |format|
+      format.html { }
+      format.json { }
     end
-    # @ride = Ride.new(ride_params)
-    # respond_to do |format|
-    #   if @ride.save
-    #     format.html { redirect_to ride_url(@ride), notice: "ride was successfully created." }
-    #     format.json { render :show, status: :created, location: @ride }
-    #   else
-    #     format.html { render :new, status: :unprocessable_entity }
-    #     format.json { render json: @ride.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   private

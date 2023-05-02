@@ -1,1 +1,6 @@
-<%= link_to "Call a New Ride", new_ride_path(refeer: @admin.id), class: "btn btn-primary btn-lg rounded" %>
+<div class="text-center m-5">
+  <h2>Welcome to Buscavo, Click in the button below to call a new ride</h2>
+  <div class="d-grid gap-2 col-6 mx-auto m-5">
+    <%= link_to "Call a New Ride", new_ride_path(refeer: @admin.id), class: "btn btn-primary  btn-lg rounded px-4 py-5" %>
+  </div>
+</div>

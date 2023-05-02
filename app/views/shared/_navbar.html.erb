@@ -28,15 +28,7 @@
         <% elsif driver_signed_in? %>
           <%= render "shared/navbar_driver" %>
         <% else %>
-          <li class="nav-item text-white ">
-           <h6>Sign-up: </h6>
-          </li>
-          <li class="nav-item ">
-            <%= link_to "Driver", new_driver_registration_path, class: "btn btn-sm btn-primary" %>
-          </li>
-          <li class="nav-item ">
-            <%= link_to "Admin", new_admin_registration_path, class: "btn btn-sm btn-primary" %>
-          </li>
+          <%= render "shared/navbar_home" %>
         <% end %>
       </ul>
     </div>

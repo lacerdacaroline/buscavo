@@ -1,0 +1,13 @@
+<div class="container rides">
+
+  <div class="driver ridesList"
+    data-controller="drivers"
+    data-drivers-id-value="<%= @notify.ride_id %>">
+    <div class="rides py-4" data-drivers-target="box">
+      <% @ride.notifies.each do |notify| %>
+        <%= render 'rides/notify', notify: notify %>
+      <% end %>
+    </div>
+  </div>
+
+</div>

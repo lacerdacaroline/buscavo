@@ -1,25 +1,24 @@
+<div class="container">
 
-<h1>show de drivers  <br><br> </h1>
+  <div class="m-3">
+    <h1 class="text-center">Hi, thanks for using <strong>BuscaVó</strong></h1>
+    <h2 class="text-center m-3">🚕 Let's see if you have some <strong>ride</strong> 🚕 </h2>
+  </div>
 
-<div data-controller="rides">
-  <% @rides.each do |ride| %>
-    <div data-rides-id-value="<%= ride.id %>">
+  <div data-controller="users" data-users-target="responseList"></div>
 
-      <div class="rides py-4" data-rides-target="responseList">
-        <% if @ride.present? %>
-          <% @ride.notifies.each do |notify| %>
-            <%= render "rides/notify", notify: notify %>
-          <% end %>
-        <% end %>
-      </div>
-
-    </div>
-  <% end %>
 </div>
 
-<br><br><br><br><br><br>
 
-<h2>
+
+
+<%# <h1>show de drivers  <br><br> </h1> %>
+
+  <%# <div data-controller="users" data-users-target="responseList"></div> %>
+
+<%# <br><br><br><br><br><br> %>
+
+<%# <h2>
 1. Recebe um alerta de Pedido de Carro <br>
   - Mensagem de aceite de corrida (flash message / popup / bootstrap modal) <br><br>
 2. Opção negar (só cancela e retorna para página que estava) <br><br>
@@ -27,4 +26,4 @@
 4. Fazer uma Edit de Rides através do Driver <br>
   - Iniciar corrida (colocar destino da vó e iniciar corrida) <br>
   - Encaminha motorista para Waze <br>
-</h2>
+</h2> %>

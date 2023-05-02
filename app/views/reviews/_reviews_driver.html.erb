@@ -1,0 +1,46 @@
+<body>
+  <section id="testimonials">
+    <!--heading--->
+    <div class="testimonial-heading">
+      <span>Reviews</span>
+    </div>
+     <% if @driver.reviews.empty? %>
+                      <small><em class="text-muted"> No reviews for this driver</em></small>
+                        <% end %>
+    <!--testimonials-box-container------>
+    <%@driver.reviews.each do |review|%>
+    <div class="testimonial-box-container">
+      <!--BOX-1-------------->
+      <div class="testimonial-box">
+        <!--top------------------------->
+        <div class="box-top">
+          <!--profile----->
+          <div class="profile">
+            <!--img---->
+            <div class="profile-img">
+              <% if review.user.photo.attached? %>
+                <%= cl_image_tag review.user.photo.key %>
+              <% else %>
+              <%= image_tag 'profile.png' %>
+              <% end %>
+            </div>
+            <!--name-and-username-->
+            <div class="name-user">
+              <strong><%review.user.name%></strong>
+              <span><%review.user.email%></span>
+            </div>
+          </div>
+          <!--reviews------>
+          <div class="reviews"> <% review.stars.times do %>
+            <i class="fas fa-star"></i>
+         <%end%>
+          </div>
+        </div>
+        <!--Comments---------------------------------------->
+        <div class="client-comment">
+          <p><%= review.content%></p>
+        </div>
+      </div>
+    <%end%>
+  </section>
+</body>

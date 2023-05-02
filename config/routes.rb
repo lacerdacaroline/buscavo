@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :drivers, controllers: { registrations: "drivers/registrations", sessions: "drivers/sessions",
-                                       passwords: "drivers/passwords" }
+                                      passwords: "drivers/passwords" }
   devise_for :admins, controllers: { registrations: "admins/registrations", sessions: "admins/sessions",
                                      passwords: "admins/passwords" }
 
@@ -9,19 +9,18 @@ Rails.application.routes.draw do
     get :user, to: "admins#user"
   end
 
-  resource :admins, only: [:show]
-  resources :drivers, except: [:edit, :update, :create, :new]
-  resource :users
-  resources :rides
-
   root to: "pages#landing"
 
   resource :admins, only: :show
-
+  resource :users
   resources :drivers, except: %i[edit update create new]
-
+  resources :rides
   resources :notifies, only: :create
 
+  resources :reviews
+
   get "/home", to: "users#home", as: "home"
+  get "/calls", to: "drivers#calls", as: "calls"
+  get "/services", to: "rides#services", as: "services"
 
 end

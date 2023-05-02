@@ -16,7 +16,8 @@ class Admins::RegistrationsController < Devise::RegistrationsController
                                                               :credit_card_security,
                                                               :user_first_name,
                                                               :user_last_name,
-                                                              :user_phone_number])
+                                                              :user_phone_number,
+                                                              :photo])
   end
 
   def payments
@@ -30,11 +31,11 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   protected
 
   def after_update_path_for(resource)
-    admins_path(resource)
+    admins_path
   end
 
   def after_sign_up_path_for(resource)
-    admins_path(resource)
+    admins_path
   end
 
 end
